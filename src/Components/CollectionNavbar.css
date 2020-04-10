@@ -1,0 +1,95 @@
+#playlist-icon {
+  margin-bottom: 8px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+}
+#playlist-icon:focus {
+  background-color: black;
+  border-radius: 5px;
+}
+#prodcast-icon:focus {
+  background-color: black;
+  border-radius: 5px;
+}
+#albums-icon:focus {
+  background-color: black;
+  border-radius: 5px;
+}
+#artists-icon:focus {
+  background-color: black;
+  border-radius: 5px;
+}
+
+#prodcast-icon {
+  margin-bottom: 8px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+}
+
+#artists-icon {
+  margin-bottom: 8px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+}
+
+#albums-icon {
+  margin-bottom: 8px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+}
+
+.whatsNewNtn {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  font-family: Raleway-SemiBold;
+  letter-spacing: 1px;
+  line-height: 35px;
+  border-radius: 20px;
+  border: solid #ffffff;
+  margin-right: 16px;
+  height: 40px;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 900;
+  margin-left: 511px;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.whatsNewNtn:hover {
+  background-color: #1b1b1b;
+}
+
+.whatsNewNtn .num {
+  position: absolute;
+  top: 0;
+  right: -5;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ff2c2c;
+  color: #ffffff;
+  line-height: 25px;
+  font-family: sans-serif;
+  text-align: center;
+}
