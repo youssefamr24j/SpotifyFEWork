@@ -13,96 +13,196 @@ class EditProfile extends React.Component {
         this.state = {
          // newdetails:
             newemail: "",
-            newuserName: "",
-            password: "",
-            newday: 30,
-            newmonth: 1,
-            newyear: 1999,
-           newgender: "Female",
+            newdisplay_name: "",
+            passwordd: "",
            newphonenumber:"",
+           newage:"",
+           newproduct:"",
 
           passwordtrue:false,
           changeemail:false,
+          changeusername:false,
           changeday:false,
           changemonth:false,
           changeyear:false,
           changegender:false,
           changephonenumber:false,
+          changeage:false,
+          changeproduct:false,
           formerrors: {
             newemailError: "",
             newusernameError: "",
             newphonenumberError:"",
+            newageError:"",
             msg:"",
           },
           donesaving:"",
-          user1 : {},
 
-          loaded:true, //MAKE LOADED:FALSE AFTER THE INTERGRATION
-          //make userinfo inside user
-          user: {            
-              username:"areejkhalid",
-              email:"areejkhalid03@gmail.com",
-              day:20,
-              month:10,
-              year:1999,
-              pass:"123456",
-            },
 
+            data:false,
 
 
         };
     }
 
-   /* 
     componentDidMount(){
-      fetch("http://192.168.1.3:8080/users.json")
-      .then(response => response.json())
-      .then (users =>this.setState({
-        user:users,
-      loaded:true}));
-    }
-*/
+      const tokenn =localStorage.getItem('tokenfromlogin')
+      let url= process.env.URL + "/me";
+      fetch(url,{
+        method:'GET',
+        headers:{
+          'Accept':'application/json',
+          'Content-TYpe':'application/json',
+          'Authorization' :'Token'+tokenn
+        }
+      }).then((result)=> {
+       result.json().then((resp) =>{
+  
+  this.setState({data:resp})
+       })
+      })
+    } 
     
    saveEdit =e =>{  
-    e.preventDefault();
-    console.log("done??");   
-    if(this.state.password===this.state.user.pass){
+    //e.preventDefault();     
+    if(this.state.passwordd===this.state.data.password){
                if(this.state.changeemail===true){
-                   if( this.state.newemail !== this.state.user.email) {
-                    //axious.post('/users',newemail) 
+                   if( this.state.newemail !== this.state.data.email) {
+                    const tokenn =localStorage.getItem('tokenfromlogin' )                   
+                     let ur5l=process.env.URL + "/users/me";
+                     let data={
+                      'email' :this.state.newemail,
+                      
+                     }
+                     fetch(ur5l,{
+                       method:'PATCH',
+                       headers:{
+                         'Content-Type':'application/json',
+                         'Accept':'application/json',
+                         'Authorization' :'Token'+tokenn
+                       },
+                       body:JSON.stringify(data)
+                     }).then((result) => {
+                    result.json().then((respp) =>{
+                   console.warn("respp".respp)
+                     this.setState({msg:"Email is changed!"});
+                    })
+                     })
+                    
                     this.setState({msg:"Email is changed!"});
                    }
                    else{
                     this.setState({msg:"Email is already taken!"});
                    }
                   }
-            
-             if(this.state.changeday===true){
-           // axious.post('/users',newday)
-           this.setState({msg:"Day of your birthdate is changed!"});
-              }
-    
-          if(this.state.changemonth===true){
-            //axious.post('/users',newmonth) 
-            this.setState({msg:"month of your birthday is changed!"});
-             }
-    
-          if(this.state.changeyear===true){
-            //axious.post('/users',newyear)
-            this.setState({msg:"year of your birthday is changed!"});
-           }
-    
-          if(this.state.changegender===true){
-            //axious.post('/users',newgender)
-            this.setState({msg:"your gender is changed!"});
-           }
-    
+ /*
            if(this.state.changephonenumber===true){
-    ///axious.post('/users',newphonenumber)
+    ///axious.post('http://192.168.1.3:8080/users.json',this.statenewphonenumber)
+   
     this.setState({msg:"your phone number is changed!"});
            }
+           if(this.state.changeusername===true){
+            ///
+            let url="	http://dummy.restapiexample.com/api/v1/create";
+            let data=this.state.newdisplay_name;
+            fetch(url,{
+              method:'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Accept':'application/json',
+              },
+              body:JSON.stringify(data)
+            }).then((result) => {
+           result.json().then((respp) =>{
+          console.warn("respp".respp)
+           })
+            })
+          }
+*/
+if(this.state.changeusername===true){
+if( this.state.newdisplay_name!== this.state.data.display_name) {
+  const tokenn =localStorage.getItem('tokenfromlogin')
+                 
+  let url55=process.env.URL +"/users/me";
+  let data={
+    'display_name':this.state.newdisplay_name,
     
+  }
+  fetch(url55,{
+    method:'PATCH',
+    headers:{
+      'Content-Type':'application/json',
+      'Accept':'application/json',
+      'Authorization' :'Token'+tokenn  
+    },
+    body:JSON.stringify(data)
+  }).then((result) => {
+ result.json().then((respp) =>{
+console.warn("respp".respp)
+  this.setState({msg:"UserName is changed!"});
+  console.log(this.state.data.email)
+ })
+  })
+}
+else{this.setState({msg:"UserName is already taken!"}) }
+}           
+   if(this.state.changeage===true){
+    const tokenn =localStorage.getItem('tokenfromlogin')
     
+    let url557=process.env.URL + "/users/me";
+    let data={
+              'age':this.state.newage,
+              
+    }
+    fetch(url557,{
+      method:'PATCH',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept':'application/json',
+        'Authorization' :'Token'+tokenn
+      },
+      body:JSON.stringify(data)
+    }).then((result) => {
+   result.json().then((respp) =>{
+  console.warn("respp".respp)
+    this.setState({msg:"Age is changed!"});
+   })
+    })
+   }
+   ////////
+   if(this.state.changeusername===true || this.state.changeemail===true || this.state.changeage===true){
+    if( this.state.newemail !== this.state.data.email) {
+      const tokenn =localStorage.getItem('tokenfromlogin')
+      let ura= process.env.URL + "/users/me";
+      let data={
+            'email' :this.state.newemail || this.data.email,
+'display_name':this.state.newdisplay_name || this.data.display_name,
+'age':this.state.newage || this.state.data.age,
+      }
+      fetch(ura,{
+        method:'PATCH',
+        headers:{
+          'Content-Type':'application/json',
+          'Accept':'application/json',
+          'Authorization' :'Token'+tokenn
+        },
+        body:JSON.stringify(data)
+      }).then((result) => {
+     result.json().then((respp) =>{
+    console.warn("respp".respp)
+      this.setState({msg:"your details is changed!"});
+     })
+      })
+    }
+    else{
+     this.setState({msg:"try again!!"});
+    }
+   }
+
+
+
+   //
+
         }
         else{
           this.setState({msg:"the password is not correct"});
@@ -128,6 +228,8 @@ class EditProfile extends React.Component {
         this.setState({changeemail:true})
       }
     };
+
+
     onChangephonenumber = e =>{
       this.setState({
         newphonenumber: e.target.value,
@@ -150,32 +252,42 @@ class EditProfile extends React.Component {
    
     onChangepassword = e => {
       this.setState({
-        password: e.target.value
-      });
-
-    };
-    
-    onchangedateday = e => {
-      this.setState({
-        newday: e.target.value,
-        changeday:true,
-      });
-    };
-  
-    onchangedateyear = e => {
-      this.setState({
-        newyear: e.target.value,
-        changeyear:true
-      });
-    };
-  
-    onchangedatemonth = e => {
-      this.setState({
-        newmonth: e.target.value,
-        changemonth:true,
+        passwordd: e.target.value
       });
     }
+      onChangeage = e => {
+        if(e.target.value<=9 || e.target.value >=90)
+        {
+          this.setState({newageError:" Sorry!! Min age is 10 an Max age is 90"})
+        }
+        else{
+        this.setState({
+          newage: e.target.value,
+          newageError:"",
+          changeage:true
+        });
+      }
 
+    }
+    
+    onChangeusername= e=>{
+      this.setState({
+        newdisplay_name: e.target.value
+      });
+      let usernameerror = this.state.newusernameError;
+      usernameerror =
+        e.target.value.length > 16 ||
+        e.target.value.length === 0 ||
+        e.target.value.trim() === "" ||
+        e.target.value.length < 6
+          ? "minimum 6charchters And Maxmium 16 charchters are required"
+          : "";
+      this.setState({ newusernameError: usernameerror });
+      if (this.state.newusernameError==="")
+      {
+        this.setState({changeusername: true})
+      }
+    }
 
     onChangegender = e =>{
       this.setState({
@@ -194,15 +306,18 @@ class EditProfile extends React.Component {
   
 
     render() {
-      var { user,loaded } =this.state;
-      if(loaded===false){
-        return ( <div>Data is loading..</div>)
-      }
-      else{
-        
+      const data=this.state.data;
+      console.warn(data);
+
+        var name =this.state.data.display_name || "";
+        var e = this.state.data.email || "";
+        var aa = this.state.data.age || "";
+
+
        return(
 
          <div style={{paddingBottom:200}} className="editprofileform"> 
+
 
          <br></br>
          <br></br>
@@ -214,12 +329,43 @@ class EditProfile extends React.Component {
             <input
             onChange={this.onChangeemail}
             type="text"
-            placeholder={this.state.user.email}
+            placeholder={e}
             name="newemail"
             className="forminput"
           />
           <div className="errormsg">{this.state.newemailError}</div>
           <br></br>
+        
+          <label className="labels">Username</label>
+           <br></br>
+           
+            <input
+            onChange={this.onChangeusername}
+            type="text"
+            placeholder={name}
+            name="newdisplay_name"
+            className="forminput"
+          />
+          <div className="errormsg">{this.state.newusernameError}</div>
+          <br></br>
+<label className="labels">Age</label>
+          <input
+            onChange={this.onChangeage}
+            type="number"
+            placeholder={aa}
+            name="newage"
+            className="forminput"
+            maxLength="2"
+            minLength="1"
+            pattern="[0-9]*" 
+            
+          />
+          <div className="errormsg">{this.state.newageError}</div>
+
+
+<br>
+</br>
+
 
           <label className="labels">Confirmation Password</label>
           <br></br>
@@ -228,27 +374,12 @@ class EditProfile extends React.Component {
             onChange={this.onChangepassword}
             type="password"
             placeholder="Enter Your Password To Confirm Edits"
-            name="newpassword"
+            name="passwordd"
             className="forminput"
             required="required"
           />
           
          
-          <br></br>
-          
-          <label className="labels">Gender</label>
-          <br></br>
-          
-           <select
-            id="select"
-            className="forminput"
-            name="newgender"
-            placeholder={this.state.user.gender}
-            onChange={this.onChangegender}
-          >
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-          </select>
 
           <br></br>
           <label className="labels">Phone Number</label>
@@ -268,57 +399,9 @@ class EditProfile extends React.Component {
 
           <br></br>
 
-         <label className="labels" >Date Of Birth</label>
-        <br></br>
 
-        <input
-            id="D1"
-            onChange={this.onchangedateday}
-            type="number"
-            placeholder={this.state.user.date}
-            className="forminput"
-            name="newday"
-            maxLength="2"
-            max="30"
-            min="01"
-            pattern="[0-9]*"
-            
-          />
 
-          <select
-            id="D3"
-            className="forminput"
-            onChange={this.onchangedatemonth}
-            name="newmonth"
-            placeholder={this.state.user.month}
-            
-          >
-            /option><option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-
-          <input
-            id="D2"
-            onChange={this.onchangedateyear}
-            type="number"
-            className="forminput"
-            placeholder={this.state.user.year}
-            name="newyear"
-            maxLength="4"
-            max="2019"
-            min="1970" ></input>
-          <br></br>
-          <br></br> 
+         
 
           <div className="errormsg">{this.state.msg}</div>
               
@@ -327,9 +410,10 @@ class EditProfile extends React.Component {
           
 
            </div>        
- );
-       }
-    }
+ );}
+       
+    
 }
 export default EditProfile;
 //  //#1db954;
+
