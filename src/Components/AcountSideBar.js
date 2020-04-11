@@ -4,14 +4,14 @@ import  "./AcountSideBar.css";
 class AcountSideBar extends React.Component {
 render(){
     return(
-    <div class="side">
+    <div className="side">
         
         <nav id="sidebar">
-            <div class="sidebar-header">
+            <div className="sidebar-header">
                 <h3>Account Info</h3>
             </div>
 
-            <ul class="list-unstyled components">
+            <ul className="list-unstyled components">
 
 
             <img
