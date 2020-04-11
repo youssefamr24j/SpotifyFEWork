@@ -13,17 +13,32 @@ class Loginform extends Component {
       passwordError: "",
       loggedIn: false,
       loggingError: "",
-      loaded:true, //seted to false in normal mocking
-      user:{
-        email:"user1@gmail.com",
-        password:"123456"
-      }
+      user:false,  //array of users
+      
+       
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
+/*
+  componentDidMount(){
+    let url= process.env.URL + "/users/login";
+    fetch(url,{
+      method:'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-TYpe':'application/json',
+      }
+    }).then((result)=> {
+     result.json().then((resp) =>{
+
+this.setState({user:resp})
+     })
+    })
+  } 
+  */
   onChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -52,76 +67,48 @@ class Loginform extends Component {
     }
   }
 
-  //  componentDidMount() {
-  //    fetch('...................')
-  //    .then(response => {
-  //      response.json
-  //    })
-  //    .then(users => {
-  //      this.setState({
-  //       user:users,
-  //       loaded:true
-  //      })
-       
-  //    });
-  //  }
-
 
 
   onSubmit = e => {
+
     this.setState({ nameError: "", passwordError: "" });
     e.preventDefault();
 
     if (this.isValid()) {
-      //----- This lines are must when integrating with the backend not now
-      /* let input = document.querySelectorAll('.center');
-
-       const data = {
-
-           email: input[0].value,
-           password: input[1].value,
-           
-
-       }
-
-   return axios.post('http://localhost:3000/users' , data)
-    .then(response => {
-    console.log(response)
-        if(response.data.token) {
-         //Finish Login
-        }
-        else {
-            alert('please check your username or password')
-        }
-        
-    })
-   }
-   //CatchErrorOfServer
-   
-}*/
-
       //-------------------------------------------------------
-      //Here's to only fake log in without any connections with database "static user"
-
-        if(this.state.identifier===this.state.user.email  && this.state.password===this.state.user.password) {
-      this.setState({
-        loggedIn: true
-      });}
-      else {
-        this.setState({
-          loggingError:"Incorrect username or password"
-        })
-          
+        let url=process.env.URL + "/users/login";
+     let data=(this.state.user)
+     fetch(url,{
+      method:'POST',
+      headers:{
+        'Accept':'application/json',
+        'Content-TYpe':'application/json',
+      },
+      body:JSON.stringify(data)
+    }).then((resultss)=> {
+     resultss.json().then((resp) =>{
+    console.warn(resp)
+    var h =resp.token;
+   
+    localStorage.setItem('tokenfromlogin',h)
+    this.setState({
+      loggedIn: true
+    });
+        
+     })
+    })
+  
       }
+      if(this.state.loggedIn===false && this.isValid() ) {
+       { 
+         this.setState({loggingError:"Incorrect user or password"})
+         }
     }
-    
+  
   };
   render() {
     const { identifier, password, isLoading,loaded } = this.state;
-    if(loaded===false) {
-      return <div style={{paddingBottom:600}}>loading...</div>
-    }
-    else {
+    
     if (this.state.loggedIn) {
       return (window.location.href = "/Home");
     }
@@ -141,13 +128,14 @@ class Loginform extends Component {
           CONTINUE WITH FACEBOOK
         </button>
         <h3>OR</h3>
-        <input
+        <input  
           name="identifier"
           field="identifier"
           value={identifier}
           className="center"
           type="text"
           placeholder="Enter Username or Email "
+         
           onChange={this.onChange}
         />
         <div className="error">{this.state.nameError}</div> <br />
@@ -177,5 +165,5 @@ class Loginform extends Component {
     );
   }
 }
-}
+
 export default Loginform;
