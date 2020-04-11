@@ -44,6 +44,13 @@ this.setState({user:resp})
     this.setState({ [e.target.name]: e.target.value });
   };
 
+
+//function documentation
+/*
+* Handles validations 
+*@function isValid
+*@param {event} 
+*/
   isValid() {
     if (this.state.identifier.length < 1 && this.state.password.length < 1) {
       this.setState({
@@ -67,9 +74,13 @@ this.setState({user:resp})
     }
   }
 
-
-
-  onSubmit = e => {
+  //function documentation
+/*
+* Handles login submission
+*@function onSubmit
+*@param {event} - submit event
+*/
+onSubmit = e => {
 
     this.setState({ nameError: "", passwordError: "" });
     e.preventDefault();
