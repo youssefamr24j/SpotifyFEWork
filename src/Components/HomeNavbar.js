@@ -6,7 +6,7 @@ class HomeNavbar extends Component {
   render() {
     return (
       <div className="NavLayout">
-        <ul className="main-nav">
+        <div className="main-nav">
           <li>
             <a href="/Home" className="previous-btn prev">
               &#8249;
@@ -39,7 +39,7 @@ class HomeNavbar extends Component {
               </div>
             </div>
           </li>
-        </ul>
+        </div>
       </div>
     );
   }

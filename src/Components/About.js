@@ -1,36 +1,38 @@
 import React, { Component } from "react";
-
+import { About } from "./Biography";
 class HomeContent extends Component {
   constructor() {
     super();
     this.state = {
-      data: false,
+      // data: false,
+      About: About,
     };
   }
-  componentDidMount() {
-    let url = "http://localhost:8080/about/1";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }).then((result) => {
-      result.json().then((resp) => {
-        console.warn(resp);
-        this.setState({ data: resp });
-      });
-    });
-  }
+  // componentDidMount() {
+  //   let url = "http://localhost:8080/about/1";
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((result) => {
+  //     result.json().then((resp) => {
+  //       console.warn(resp);
+  //       this.setState({ data: resp });
+  //     });
+  //   });
+  // }
   render() {
-    const data = this.state.data;
-
-    return data ? (
+    const About = this.state.About[0];
+    //console.warn(this.state.About);
+    return About ? (
       <div
         style={{
           paddingTop: "30px",
           paddingLeft: "30px",
           backgroundColor: "black",
+          height: "700px",
         }}
       >
         <h4
@@ -49,7 +51,7 @@ class HomeContent extends Component {
             fontSize: "14px",
           }}
         >
-          {data.about}
+          {About.about}
         </p>
       </div>
     ) : (

@@ -77,7 +77,7 @@ class Sidebar extends React.Component {
                 </div>
                 <div className="modal-body">
                   <div className="form-group">
-                    <label for="usr">
+                    <label htmlFor="usr">
                       Create Playlist: "Demo in this phase"
                     </label>
                     <input

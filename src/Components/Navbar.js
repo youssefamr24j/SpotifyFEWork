@@ -3,6 +3,7 @@ import CollectionNavbar from "./CollectionNavbar";
 import SearchNavbar from "./SearchNavbar";
 import LoginNavbar from "./LoginNavbar";
 import HomeNavbar from "./HomeNavbar";
+import LikedTracksNavbar from "./LikedTracksNavbar";
 import "react-notifications-component/dist/theme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
@@ -49,24 +50,13 @@ class Navbar extends React.Component {
     }
     if (window.location.href === "http://localhost:3000/collection/tracks") {
       return (
-        <div className="NavLayout">
-          <ul className="main-nav">
-            <li>
-              <a href="/Home" className="previous-btn prev">
-                &#8249;
-              </a>
-            </li>
-            <li>
-              <a href="/Home" className="next-btn next">
-                &#8250;
-              </a>
-            </li>
-          </ul>
+        <div>
+          <LikedTracksNavbar />
         </div>
       );
     }
     if (window.location.href === "http://localhost:3000/create") {
-      return <div className="NavLayout" style={{ background: "white" }}></div>;
+      return <div className="NavLayout"></div>;
     } else {
       return <div></div>;
     }
