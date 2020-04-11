@@ -60,13 +60,11 @@ class SignupForm extends React.Component {
       }
     }).then((result)=> {
      result.json().then((resp) =>{
-
 this.setState({data:resp})
      })
     })
   }  
     
-
 componentDidMount(){
   fetch('http://192.168.1.3:8080/users.json')
   .then(response => {
@@ -76,13 +74,13 @@ componentDidMount(){
     this.setState({
       user:users,
    loaded:true})
-
   });
   
 }
 */
   onsubmit = e => {
-    e.preventDefault();
+    
+    ///e.preventDefault();
     if (
       this.state.passwordError === "" &&
       this.state.usernameError === "" &&
@@ -97,7 +95,10 @@ componentDidMount(){
      else{
       
  
-  let aa=process.env.URL + "/users/signUp";
+  const aa= process.env.REACT_APP_URL + "/users/signUp";
+  console.log(process.env)
+  console.log(aa) //for debugging =abm
+
   //let data=this.state.datatosend;
   let data ={
     'email':  this.state.email,
@@ -108,6 +109,7 @@ componentDidMount(){
     'gender':this.state.gender,
     'product' :this.state.product
   }
+  console.log(data)
   fetch(aa,{
     method:'POST',
     headers:{
@@ -295,7 +297,7 @@ if(this.state.loaded===false){
             name="gender"
             placeholder={this.state.gender}
           >
-            <option selectedvalue="Female">Female</option>
+            <option defaultValue="Female">Female</option>
             <option value="Male">Male</option>
           </select>
  
@@ -305,7 +307,7 @@ if(this.state.loaded===false){
 <label>type:</label>
 <br></br>
           <select id="sss" className="forminput" name="type" onChange={this.onChangetype} required="required" >
-            <option selected value ="User"> User</option>
+            <option defaultValue ="User"> User</option>
             <option value ="Artist">Artist</option>
           </select>
 
@@ -314,7 +316,7 @@ if(this.state.loaded===false){
 <label>product:</label>
 <br></br>
           <select id="sss" className="forminput" name="product" onChange={this.onChangeproduct} required="required" >
-            <option selected value ="Premium"> Premium</option>
+            <option defaultValue ="Premium"> Premium</option>
             <option value ="Free">Free</option>
 </select>
 
