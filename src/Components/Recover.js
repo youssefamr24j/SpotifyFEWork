@@ -48,6 +48,13 @@ class Recoverplaylist extends Component {
     
 
  //post request onclick restore to post data again to the playlist
+
+ //function documentation
+/*
+* Handles onClick RESTORE
+*@function restoreData
+*@param {event} - restoreData event
+*/
     restoreData = e => {
       this.setState({onTable:false ,onHeader:true}) //commented later on
      //alert("Playlist RESTORED")
@@ -100,6 +107,15 @@ class Recoverplaylist extends Component {
     //////////////////////////////////
 
     }
+
+
+
+    //function documentation
+/*
+* Handles rendering table
+*@function renderTableData
+*@param {event} - render table event
+*/
     renderTableData() {
         //there's a deleted playlist
       if(this.state.deletedLists){
