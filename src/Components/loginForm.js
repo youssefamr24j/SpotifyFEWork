@@ -129,6 +129,7 @@ this.setState({user:resp})
         </button>
         <h3>OR</h3>
         <input  
+          id="email"       
           name="identifier"
           field="identifier"
           value={identifier}
@@ -140,6 +141,7 @@ this.setState({user:resp})
         />
         <div className="error">{this.state.nameError}</div> <br />
         <input
+          id="password"
           name="password"
           field="password"
           value={password}
