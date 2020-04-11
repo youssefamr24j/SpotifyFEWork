@@ -9,7 +9,7 @@ class Recoverplaylist extends Component {
         this.state = {
             
             deletedLists: [
-              { date:2/4, title: 'singer1', songs: 5}
+              { date:"2/4/2020", title: 'singer1', songs: 5}
                //this array must be empty when integrating with real data to fill it with data from server
               
               ],
@@ -32,10 +32,19 @@ class Recoverplaylist extends Component {
     //     }).then((results)=> {
     //      results.json().then((response) =>{
     
-    // this.setState({deletedLists:response,onTabel:true,onHeader:false})
-    //      })
-    //     })
-    //   } 
+    // this.setState({deletedLists:response});
+        
+//      })
+//     })
+  
+//       
+//       if(this.state.deletedLists ) {
+//        { 
+//          this.setState({onTabel:true,onHeader:false})
+//          }
+//     }
+// }
+    
     
 
  //post request onclick restore to post data again to the playlist
@@ -57,8 +66,8 @@ class Recoverplaylist extends Component {
     //  }).then((resultts)=> {
     //   resultts.json().then((respp)=>{
     //    const deletedLists = respp.data;
-    //    this.setState({ deletedLists)
-    //this.setstate({ontable:false,onHeader:true })}
+    //    this.setState({ deletedLists})
+    //this.setstate({ontable:false,onHeader:true })
     //  console.log("data sent")
      
     //})
