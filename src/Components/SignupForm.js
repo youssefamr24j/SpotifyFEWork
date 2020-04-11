@@ -15,13 +15,18 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Data:{email: "",
+      email: "",
       userName: "",
       password: "",
+      age: 30,
+      type:"",
+      gender: "Female",
+      product: "Free"
+      ,
       day: 30,
       month: 1,
       year: 1999,
-      gender: "Female",},
+      gender: "Female",
 
       isvalid: false,
       signedup: false, 
@@ -30,22 +35,38 @@ class SignupForm extends React.Component {
         emailError: "not yet",
         usernameError: "notyet",
         passwordError: "notyet",
+        ageerror:"notyet",
         errormsg: ""
       },
-      loaded:true, //MAKE LOADED:FALSE AFTER THE INTERGRATION
-      //the data that the user data must be not equal it
-      user: {            
-          username1:"areejkhalid",
-          email1:"user1@gmail.com", //make the object empty after intergration
-        },
-        //
+      loaded:false, 
+      data:true,
+        errormsg: ""
+      
+
        
 
     };
   }
 
-
 /*
+  componentDidMount(){
+    let link= process.env.URL +"/users/signUp";
+    console.log(process.env.URL)
+    fetch(link,{
+      method:'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-TYpe':'application/json',
+      }
+    }).then((result)=> {
+     result.json().then((resp) =>{
+
+this.setState({data:resp})
+     })
+    })
+  }  
+    
+
 componentDidMount(){
   fetch('http://192.168.1.3:8080/users.json')
   .then(response => {
@@ -65,65 +86,60 @@ componentDidMount(){
     if (
       this.state.passwordError === "" &&
       this.state.usernameError === "" &&
-      this.state.emailError === ""
+      this.state.emailError === ""    &&
+      this.state.ageerror ===""
     ) {
 
-     if(this.state.email===this.state.user.email || this.state.userName===this.state.user.username){
+     if(this.state.email===this.state.data.email || this.state.userName === this.state.data.display_name){
+     
       this.setState({errormsg:"choose another email or username"})
      }
      else{
-       ////////this equation will removed and replaced by backened to get thier responed 
-       /*
-       let input = document.querySelectorAll('.forminput');
-       const data={
-           
-           email : input[0].value,
-           username: input[1].value,
-           password: input[2].value,
-           day:input[3].value,
-           month:input[4].value,
-           year:input[5].value,
-           gender:input[6].value,
-   
-       }  
-       return axios.post('api/link', data)
-       //user exist response->false
-       .then (response =>{
-       if (response.data.userexist) // return true if username &email  exit before in databse
-      {
-       this.setState({errormsg:"choose another email or username"});
-      }
-     else{
-      //signup
-      this.setState({errormsg:"you are signed up!"});
-      //send data to add to the backend
-   ///
-   
-       }
-       })
-       //this if an error with server occur
-                   .catch(error => {
-                   if (error.response && error.response.data && error.response.data.error) {
-                       this.setState({
-                           errormsg: "*" + error.response.data.error
-                       });
-                   } else {
-                       this.setState({errormsg:"an unknown error occur"});
-                   }
-               })
-   */
-  ///////////////////////////////////////
-             /////
-             //return axios.post('http://192.168.1.3:8080/users.json', this.state.Data)
-            // .then (response =>{this.setState({signedup:true})})
-      this.setState({ signedup: true });  //-
+      
+ 
+  let aa=process.env.URL + "/users/signUp";
+  //let data=this.state.datatosend;
+  let data ={
+    'email':  this.state.email,
+    'display_name':this.state.userName,
+    'password': this.state.password,
+    'age': this.state.age,
+    'type': this.state.type,
+    'gender':this.state.gender,
+    'product' :this.state.product
+  }
+  fetch(aa,{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'Accept':'application/json',
+    },
+    body:JSON.stringify(data)
+  }).then((result) => {
+ result.json().then((respp) =>{
+console.warn("respp".respp)
+this.setState({ errormsg: "you are signed up successfully! please go and login " ,
+loaded:true,
+});  
+ })
+  })
+
+}
+if(this.state.loaded===false){
+  this.setState({ errormsg: "try again may be with diffrend email/username"}); 
+}
+    
+      
      }
-    }
+  
       
-      
-
-
+    
   };
+  onChangetype = e =>{
+  this.setState({
+    type:e.target.value
+  })
+  }
 
   onChangeemail = e => {
     this.setState({
@@ -173,46 +189,39 @@ componentDidMount(){
   };
 
   onchangedateday = e => {
+    if(e.target.value<=9 || e.target.value >=90)
+    {
+      this.setState({ageerror:" Sorry!! Min age is 10 an Max age is 90"})
+    }
+    else{
     this.setState({
-      day: e.target.value
+      age: e.target.value,
+      ageerror:""
     });
-  };
+  }
+}
 
-  onchangedateyear = e => {
-    this.setState({
-      year: e.target.value
-    });
-  };
-
-  onchangedatemonth = e => {
-    this.setState({
-      month: e.target.value
-    });
-  };
 
   onChangegender = e => {
     this.setState({
       gender: e.target.value
     });
-  };
+  }
+  onChangeproduct = e=>{
+    this.setState({
+      product: e.target.value
+    });
+  }
   gologin = e => {
     return (window.location.href = "/login");
   }
-
-  render() {
-    var { user1,loaded } =this.state;
-    if(loaded===false){
-      return ( <div>loading..</div>)
-    }
-    else{
-
-
-    if (this.state.signedup) {
-      return (window.location.href = "/Home");
-    }
+  
+  render()
+   {
 
     return (
       <form onSubmit={this.onsubmit} id="signupForm">
+
         <div className="components">
           <br></br>
           <br></br>
@@ -220,6 +229,9 @@ componentDidMount(){
           <br></br>
           <h2>OR</h2>
           <h1>Sign Up With Your Email Address</h1>
+          <br></br>
+          <div className="errormsg2">{this.state.errormsg}</div>
+          <br></br>
           <div className="errormsg">{this.state.errormsg}</div>
           <input
             onChange={this.onChangeemail}
@@ -257,29 +269,54 @@ componentDidMount(){
           <div className="errormsg">{this.state.passwordError}</div>
           <br></br>
 
-          <label id="label1">Date of Birth</label>
-          <input id="D1"  onChange={this.onchangedateday}
-  type="number" placeholder="Day" name="day" maxLength="2" max="30" min="01" pattern="[0-9]*"  required="required"  />
-  
-<select id= "D3" onChange={this.onchangedatemonth}
-  name="month" required="required" >/option><option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
-  
-<input id="D2"  onChange={this.onchangedatemonth}
-  type="number" placeholder="Year" name="year" maxLength="4" max="2019" min="1970"  required="required" ></input>  
- 
-
+          
+            <input
+            onChange={this.onchangedateday}
+            type="number"
+            placeholder="YourAge"
+            name="age"
+            className="forminput"
+            maxLength="2"
+            minLength="1"
+            pattern="[0-9]*" 
+            required="required"
+          />
+          <div className="errormsg">{this.state.ageerror}</div>
+          
           <br></br>
-          <br></br>
 
+          
+         <label>gender:</label>
+          <br></br>
           <select
             id="select"
             className="forminput"
             onChange={this.onChangegender}
             name="gender"
+            placeholder={this.state.gender}
           >
-            <option value="female">Female</option>
-            <option value="male">Male</option>
+            <option selectedvalue="Female">Female</option>
+            <option value="Male">Male</option>
           </select>
+ 
+
+          <br></br>
+
+<label>type:</label>
+<br></br>
+          <select id="sss" className="forminput" name="type" onChange={this.onChangetype} required="required" >
+            <option selected value ="User"> User</option>
+            <option value ="Artist">Artist</option>
+          </select>
+
+          <br></br>
+
+<label>product:</label>
+<br></br>
+          <select id="sss" className="forminput" name="product" onChange={this.onChangeproduct} required="required" >
+            <option selected value ="Premium"> Premium</option>
+            <option value ="Free">Free</option>
+</select>
 
           <br></br>
           <br></br>
@@ -290,11 +327,16 @@ componentDidMount(){
           </button>
           <h3> Already have account?</h3>
           <button id= "forlogin" onClick={this.gologin}>Login</button>
+
         </div>
+
       </form>
     );
     }
+    
+  
+  
+
   }
 
-}
 export default SignupForm;
