@@ -8,6 +8,10 @@ import Arab from "./Arab";
 import "./HomeContent.css";
 import {Artists} from "./Artistsdata";
 
+/**
+ * it displayes different categories in the same page
+ */
+
 class HomeContent extends Component {
   constructor() {
     super();
@@ -21,6 +25,9 @@ class HomeContent extends Component {
   //     .then((users) => this.setState({ Artists: users }));
   // }
   render() {
+    /**
+     * it cheack if there is a data to visualize or the data did not come yet 
+     */
     if (this.state.Artists.length === 0) return <h1>Loading...</h1>;
 
     return (
