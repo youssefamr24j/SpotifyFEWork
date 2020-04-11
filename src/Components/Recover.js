@@ -19,40 +19,78 @@ class Recoverplaylist extends Component {
         };
     }
      //-----------here fetch data from server to the deleted lists array (deletedLists must be handeled in backend)
-    //  componentDidMount() {
-  //    fetch('...................')
-  //    .then(response => {
-  //      response.json
-  //    })
-  //    .then(deletedlists => {
-  //      this.setState({
-  //       deletedLists:deletedlists,
-  //       loaded:true
-  //      })
-       
-  //    });
-  //  }
+    //   componentDidMount() {
+    //     const tokenn =localStorage.getItem('tokenfromlogin')
+    //     let url= "http://localhost:3000/deleted";
+    //     fetch(url,{
+    //       method:'GET',
+    //       headers:{
+    //         'Accept':'application/json',
+    //         'Content-TYpe':'application/json',
+   //          'Authorization' :'Token'+tokenn
+    //       }
+    //     }).then((results)=> {
+    //      results.json().then((response) =>{
+    
+    // this.setState({deletedLists:response,onTabel:true,onHeader:false})
+    //      })
+    //     })
+    //   } 
+    
 
-    //-------------Handling Recovering Playlist
-      // handling = e => {
-      
-      //  if(user array is not empty fetched with data from the above function)//get data heree from server using if condition 
-      //   {
-      //     this.setState({onTable:true}) //therefore it will render table content on the screen
-      
-      //   }
-      //    else {
-      //      this.setState({onHeader:true})
-      //   }
-
-      // }
-
-
+ //post request onclick restore to post data again to the playlist
     restoreData = e => {
-      this.setState({onTable:false,onHeader:true})
-      alert("Playlist RESTORED")
-      //must return data again to the server by post request 
-      }
+      this.setState({onTable:false ,onHeader:true}) //commented later on
+     //alert("Playlist RESTORED")
+      //must return data again to the server by post request (POST REQUEST) to [lists]
+      // const tokenn =localStorage.getItem('tokenfromlogin')
+    //   let url="http://localhost:3000/playlists"
+    //  let datalist=this.state.deletedLists
+    //   fetch(url,{
+    //   method:'POST',
+    //   headers:{
+    //      'Accept':'application/json',
+    //      'Content-TYpe':'application/json',
+    //       'Authorization' :'Token'+tokenn
+    //    },
+    //    body:JSON.stringify(datalist)
+    //  }).then((resultts)=> {
+    //   resultts.json().then((respp)=>{
+    //    const deletedLists = respp.data;
+    //    this.setState({ deletedLists)
+    //this.setstate({ontable:false,onHeader:true })}
+    //  console.log("data sent")
+     
+    //})
+  //})
+//}
+   
+     //delete data from deleted list server must tried on real server
+     
+      
+     ///////////////////
+     //    const tokenn =localStorage.getItem('tokenfromlogin')
+    //     fetch("http://localhost:3000/deleted",{
+    //    method:'DELETE',
+    //    'Authorization' :'Token'+tokenn
+      
+      
+    //    })
+    
+    
+    //    .then((result)=> {
+    //     result.json().then((resp)=> {
+    //      const deletedLists = resp.datalist;
+    //      this.setState({ deletedLists })
+    
+    //    console.log("data deleted")
+
+    //     })
+    //    })
+    //  }
+    //////////////////////////////////
+
+    }
     renderTableData() {
         //there's a deleted playlist
       if(this.state.deletedLists){
@@ -93,7 +131,7 @@ class Recoverplaylist extends Component {
 
         render() {
          
-           // must call handling function here to know the state of onTable and onHeader before entering
+          
     return (
         
       <div style={{paddingBottom:300}} >
