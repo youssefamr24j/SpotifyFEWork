@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./PremiumCreddd.css";
-
+/**Contains the page which contains a form for the credit card credentials, in case of upgrading to premium. */
 class PremiumCred extends Component {
   render() {
     return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import SongCard from './SongCard';
 
+/**Returns SongCard component for every element in the array, forming a list of song cards. */
 const SongList = ({ songs }) => {
   return (
     <div>

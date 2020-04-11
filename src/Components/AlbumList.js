@@ -1,6 +1,7 @@
 import React from 'react';
 import AlbumCard from './AlbumCard';
 
+/**Returns AlbumCard component for every element in the array, forming a list of album cards.*/
 const AlbumList = ({ albums }) => {
   return (
     <div>

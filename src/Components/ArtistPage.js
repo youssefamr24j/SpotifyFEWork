@@ -7,6 +7,7 @@ import About from "./About";
 import axios from "axios";
 import Playbutton from './PlayButton';
 
+/**•	ArtistPage: Contains the profile of an artist, including his songs, albums, biography. */
 class ArtistPage extends React.Component {
   constructor() {
     super();

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Prem.css";
+
+/**Contains the premium page which opens as soon as the upgrade button is pressed. */
 class Prem extends Component {
   render() {
     return (
