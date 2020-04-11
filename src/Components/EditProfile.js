@@ -332,6 +332,7 @@ else{this.setState({msg:"UserName is already taken!"}) }
             placeholder={e}
             name="newemail"
             className="forminput"
+            id ="emailid"
           />
           <div className="errormsg">{this.state.newemailError}</div>
           <br></br>
@@ -345,6 +346,7 @@ else{this.setState({msg:"UserName is already taken!"}) }
             placeholder={name}
             name="newdisplay_name"
             className="forminput"
+            id="usernameid"
           />
           <div className="errormsg">{this.state.newusernameError}</div>
           <br></br>
@@ -355,6 +357,7 @@ else{this.setState({msg:"UserName is already taken!"}) }
             placeholder={aa}
             name="newage"
             className="forminput"
+            id ="ageid"
             maxLength="2"
             minLength="1"
             pattern="[0-9]*" 
@@ -374,9 +377,10 @@ else{this.setState({msg:"UserName is already taken!"}) }
             onChange={this.onChangepassword}
             type="password"
             placeholder="Enter Your Password To Confirm Edits"
-            name="passwordd"
+            name="passwordid"
             className="forminput"
             required="required"
+            id="pass"
           />
           
          
@@ -406,7 +410,7 @@ else{this.setState({msg:"UserName is already taken!"}) }
           <div className="errormsg">{this.state.msg}</div>
               
           <button className="buttonprem" onClick={this.cancelEdit }>Cancel Edits</button>
-   <button className="buttonprem" onClick={this.saveEdit }>Save Edits</button>
+   <button className="buttonprem2" onClick={this.saveEdit }>Save Edits</button>
           
 
            </div>        
@@ -416,4 +420,3 @@ else{this.setState({msg:"UserName is already taken!"}) }
 }
 export default EditProfile;
 //  //#1db954;
-
