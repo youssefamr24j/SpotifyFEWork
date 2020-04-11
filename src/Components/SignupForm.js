@@ -241,6 +241,7 @@ if(this.state.loaded===false){
             placeholder="Email"
             name="email"
             className="forminput"
+            id ="emailid"
             required="required"
           />
 
@@ -253,6 +254,7 @@ if(this.state.loaded===false){
             placeholder="UserNamee"
             name="userName"
             className="forminput"
+            id="usernameid"
             required="required"
           />
 
@@ -265,6 +267,7 @@ if(this.state.loaded===false){
             placeholder="Password"
             name="password"
             className="forminput"
+            id ="passwordid"
             required="required"
           />
 
@@ -281,6 +284,7 @@ if(this.state.loaded===false){
             maxLength="2"
             minLength="1"
             pattern="[0-9]*" 
+            id="ageid"
             required="required"
           />
           <div className="errormsg">{this.state.ageerror}</div>
