@@ -1,6 +1,11 @@
 import React from 'react';
 import ArtistCard from './ArtistCard';
 
+/**
+ * it takes an array or object that has id ,name,photo and type to send them to Artistcard class which visulaize each one of them
+ * we use this function to create many cards and header for them
+ */
+
 
 const PopularPlaylists = ({Artists}) =>{
     const cardComponents=Artists.map(user => {

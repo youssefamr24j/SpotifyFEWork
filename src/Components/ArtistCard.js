@@ -1,6 +1,10 @@
 import React from "react";
 import "./ArtistCard.css";
 
+/** 
+ * displaying the photo, name of artist in card shape
+ */
+
 const ArtistCard = ({ name, photo, type }) => {
   return (
     <div id="card" className="dib br4 pa3 ma2 dim h5 mw5">
