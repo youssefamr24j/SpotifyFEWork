@@ -1,6 +1,9 @@
 import React from "react";
 import "./Sidebar.css";
 
+/**
+ * Sidebar that contains (Home, Search, Library) buttons that interface with user
+ */
 class Sidebar extends React.Component {
   render() {
     if (window.location.href === "http://localhost:3000/login") {

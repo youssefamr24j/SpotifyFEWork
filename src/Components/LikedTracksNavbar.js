@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Avatar } from "antd";
 
+/**
+ * Navbar for Liked Tracks page
+ */
 class LikedTracksNavbar extends Component {
   render() {
     return (

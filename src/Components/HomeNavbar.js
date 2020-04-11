@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Avatar } from "antd";
 import "./HomeNavbar.css";
 
+/**
+ * Navbar for Home page and also for artist page
+ */
 class HomeNavbar extends Component {
   render() {
     return (

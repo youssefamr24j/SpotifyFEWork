@@ -4,6 +4,9 @@ import { Notification } from "./Notification";
 import { Avatar } from "antd";
 import "./CollectionNavbar.css";
 
+/**
+ * Navbar for collection page (playlist, podacst, albums, artist)
+ */
 class CollectionNavbar extends Component {
   constructor() {
     super();

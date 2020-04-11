@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Avatar } from "antd";
 import "./SearchNavbar.css";
 
+/**
+ * Navbar for Search pages
+ */
 class SearchNavbar extends Component {
   render() {
     return (

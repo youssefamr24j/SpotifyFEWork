@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./LoginNavbar.css";
 
+/**
+ * Navbar contains signup and login buttons after user logout
+ */
 class LoginNavbar extends Component {
   render() {
     return (
