@@ -1,41 +1,45 @@
 import React from "react";
 import  "./Accountoverview.css";
 
+
+
 class Accountoverview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
          //make the userinfo in user
-          user: {   
-                    username:"areejkhalid",
-            email:"areejkhalid03@gmail.com",
-            day:20,
-            month:10,
-            year:1999 
-          },
-          
-          loaded:true,// MAKE LOADED:FALSE AFTER THE INTERGRATION
+
+          data:false,
+          loaded:true,// MAKE LOADED:FALSE
+
         };
     }
     
-   /*  MAKE LOADED:FALSE AFTER THE INTERGRATION
-    componentDidMount(){
-      fetch('http://192.168.1.3:8080/users.json')
-      .then(response => {
-      response.json();
-       })
-      .then(users => {
-        this.setState({
-          user:users,
-       loaded:true})
+   
 
-      });
-    }
-    */
+  componentDidMount(){
+    const tokenn =localStorage.getItem('tokenfromlogin')
+    let link1= process.env.URL + "me";
+    fetch(link1,{
+      method:'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-Type':'application/json',
+        'Authorization' :'Token'+tokenn
+   
+      }
+    }).then((result)=> {
+     result.json().then((resp) =>{
+
+this.setState({data:resp})
+     })
+    })
+  }  
     
     
     gotoprem = e => {
 //go to premium page
+
 return (window.location.href = "/Premium");
       };
 
@@ -46,22 +50,35 @@ return (window.location.href = "/Premium");
 
    
 
-render() {      
-  var { user,loaded } =this.state;
-  if(loaded===false){
-    return ( <div>Data is loading..</div>)// if data still not available
-  }
-  else{
+render() {    
+  const data=this.state.data;
+  console.warn(data);
+
+    var name =this.state.data.display_name || "";
+    var e = this.state.data.email || "";
+    var count = this.state.data.country || "";
+    var ttype = this.state.data.type || "";
+    var aa = this.state.data.age || "";
+    var pp = this.state.data.product || "";
     return(
    <div style={{paddingBottom:200}} className="info">
 <h1>Account overview</h1>
   <h2>Profile</h2>
+  
 
-  <label className="labels">Username:</label><label className="data"> {this.state.user.username}</label>
+  <label className="labels">Username:</label><label className="data"> {name}</label>
 <br></br>
-<label className="labels">Email:</label> <label className="data">{this.state.user.email}</label>  
+<label className="labels">Email:</label> <label className="data">{e}</label>  
+
 <br></br>
-<label className="labels">Date of birth: </label> <label className ="data"> {this.state.user.day}/{this.state.user.month}/{this.state.user.year}</label>
+<label className="labels">Country:</label> <label className="data">{count}</label>  
+<br></br>
+<label className="labels"> type:</label> <label className="data">{ttype}</label>  
+<br></br>
+<label className="labels"> Age:</label> <label className="data">{aa}</label>  
+<br></br>
+<label className="labels"> Product:</label> <label className="data">{pp}</label>  
+
   <br></br>
   <br></br>
 
@@ -81,8 +98,6 @@ render() {
     <h5> FREE</h5>
    <button className="button1" onClick={this.gotoprem}>JOIN PREMIUM</button>
  </div>
-    ); }}
-
+    ); }
 }
 export default Accountoverview;
-////{this.state.users.username }
