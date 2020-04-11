@@ -7,6 +7,10 @@ const emailRegax = RegExp(
 );
 const phonenumberRegex =RegExp( /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 
+    /*
+this class make the user can change username,email
+    */
+
 class EditProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +48,9 @@ class EditProfile extends React.Component {
 
         };
     }
-
+    /*
+this Function take user data and fetch it
+    */
     componentDidMount(){
       const tokenn =localStorage.getItem('tokenfromlogin')
       let url= process.env.URL + "/me";
@@ -63,6 +69,13 @@ class EditProfile extends React.Component {
       })
     } 
     
+        /*
+this function check first if user enter the password correctly and then see what he want to change but first check if its not equal with his orginal details
+    /**
+   * saveEdit submission 
+   * @function saveEdit
+   * @param  {event} - submit event
+   */
    saveEdit =e =>{  
     //e.preventDefault();     
     if(this.state.passwordd===this.state.data.password){
@@ -209,6 +222,14 @@ else{this.setState({msg:"UserName is already taken!"}) }
         }
       }
     
+/*
+
+   /**
+   * onChangeemail submission 
+   * @function onChangeemail
+   * @param  {event} - submit event
+   */
+    
     onChangeemail = e => {
       this.setState({
         newemail: e.target.value
@@ -249,12 +270,24 @@ else{this.setState({msg:"UserName is already taken!"}) }
         this.setState({changephonenumber:true})
       }
     }
-   
+   /*
+  /**
+   * onChangepassword submission 
+   * @function onChangepassword
+   * @param  {event} - submit event
+   */ 
     onChangepassword = e => {
       this.setState({
         passwordd: e.target.value
       });
     }
+    /*
+    /**
+   * onChangeage submission 
+   * @function onChangeage
+   * @param  {event} - submit event
+   */ 
+    
       onChangeage = e => {
         if(e.target.value<=9 || e.target.value >=90)
         {
@@ -269,6 +302,12 @@ else{this.setState({msg:"UserName is already taken!"}) }
       }
 
     }
+/*
+    /**
+   * onChangeusername submission 
+   * @function onChangeusername
+   * @param  {event} - submit event
+   */ 
     
     onChangeusername= e=>{
       this.setState({
@@ -289,13 +328,25 @@ else{this.setState({msg:"UserName is already taken!"}) }
       }
     }
 
+    /*
+    /**
+   * onChangegender submission 
+   * @function onChangegender 
+   * @param  {event} - submit event
+   */ 
+    
     onChangegender = e =>{
       this.setState({
         newgender: e.target.value,
         changegender:true,
       });
     }
-
+/*
+  /**
+   * cancelEdit submission 
+   * @function cancelEdit 
+   * @param  {event} - submit event
+   */
     cancelEdit =e =>{
       //go to home again
       return (window.location.href = "/account");

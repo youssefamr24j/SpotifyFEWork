@@ -78,6 +78,14 @@ componentDidMount(){
   
 }
 */
+
+   /*
+check (username,email,password, age) must be entered and also for remaining inputs then  send post request to signup
+    /**
+   * Handles signup submission 
+   * @function onsubmit
+   * @param  {event} - submit event
+   */
   onsubmit = e => {
     
     ///e.preventDefault();
@@ -137,11 +145,25 @@ if(this.state.loaded===false){
       
     
   };
+     /*
+check (type)
+    /**
+   * onChangetype submission 
+   * @function onChangetype
+   * @param  {event} - submit event
+   */
   onChangetype = e =>{
   this.setState({
     type:e.target.value
   })
   }
+     /*
+check (email)
+      /**
+   * onChangeemail submission 
+   * @function onChangeemail
+   * @param  {event} - submit event
+   */
 
   onChangeemail = e => {
     this.setState({
@@ -159,6 +181,13 @@ if(this.state.loaded===false){
     this.setState({ emailError: emailerror });
   };
 
+     /*
+check (username)
+   /**
+   * onChangeusername submission 
+   * @function onChangeusername
+   * @param  {event} - submit event
+   */
   onChangeusername = e => {
     this.setState({
       userName: e.target.value
@@ -173,7 +202,13 @@ if(this.state.loaded===false){
         : "";
     this.setState({ usernameError: usernameerror });
   };
-
+       /*
+check (Password length by >8 and less than 16)
+    /**
+   * onChangepassword submission 
+   * @function onChangepassword
+   * @param  {event} - submit event
+   */
   onChangepassword = e => {
     this.setState({
       password: e.target.value
@@ -189,7 +224,13 @@ if(this.state.loaded===false){
     //this.state.passwordError=passworderror;
     this.setState({ passwordError: passworderror });
   };
-
+       /*
+check (age must be >10 )
+    /**
+   * onchangedateday submission 
+   * @function onchangedateday
+   * @param  {event} - submit event
+   */
   onchangedateday = e => {
     if(e.target.value<=9 || e.target.value >=90)
     {
@@ -202,18 +243,39 @@ if(this.state.loaded===false){
     });
   }
 }
-
+     /*
+check (gender)
+     /**
+   * onChangegender 
+   * @function onChangegender
+   * @param  {event} - submit event
+   */
 
   onChangegender = e => {
     this.setState({
       gender: e.target.value
     });
   }
+       /*
+check (product)
+     /**
+   * onChangeproduct 
+   * @function onChangeproduct
+   * @param  {event} - submit event
+   */
+
   onChangeproduct = e=>{
     this.setState({
       product: e.target.value
     });
   }
+       /*
+check (when user want to go login)
+     /**
+   * Go to login page 
+   * @function gologin
+   * @param  {event} - submit event
+   */
   gologin = e => {
     return (window.location.href = "/login");
   }

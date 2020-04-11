@@ -1,7 +1,9 @@
 import React from "react";
 import  "./Accountoverview.css";
 
-
+    /*
+this class only show the users details and make gim can go to premium or edit profile
+    */
 
 class Accountoverview extends React.Component {
     constructor(props) {
@@ -14,12 +16,15 @@ class Accountoverview extends React.Component {
 
         };
     }
-    
+
    
 
+    /*
+this function fetch and get the user data from the fakeserver/database and if it empty or cannot find it below in render it make it empty
+    */
   componentDidMount(){
     const tokenn =localStorage.getItem('tokenfromlogin')
-    let link1= process.env.URL + "me";
+    const link1= process.env.REACT_APP_URL + "/me";
     fetch(link1,{
       method:'GET',
       headers:{
@@ -36,13 +41,24 @@ this.setState({data:resp})
     })
   }  
     
-    
+    /*
+    /**
+   * gotoprem submission 
+   * @function gotoprem
+   * @param  {event} - submit event
+   */
     gotoprem = e => {
 //go to premium page
 
 return (window.location.href = "/Premium");
       };
-
+      
+     /*
+    /**
+   * gotoeditprofile submission 
+   * @function gotoeditprofile
+   * @param  {event} - submit event
+   */
     gotoeditprofile = e=>{
      return (window.location.href = "/EditProfile");
     };
