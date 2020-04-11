@@ -13,8 +13,8 @@ class Recoverplaylist extends Component {
                //this array must be empty when integrating with real data to fill it with data from server
               
               ],
-            onTable:false, //to visualize table of deleted playlist.. if data exist set this manually to true..it will change atoumatically when there's real data from server in handling function below
-            onHeader:true //to visualize that no deleted playlist set this manually to true..it will change atoumatically when there's real data from server in handling function below
+            onTable:true, //to visualize table of deleted playlist.. if data exist set this manually to true..it will change atoumatically when there's real data from server in handling function below
+            onHeader:false //to visualize that no deleted playlist set this manually to true..it will change atoumatically when there's real data from server in handling function below
 
         };
     }
