@@ -1,14 +1,21 @@
 import React  from 'react';
 
+/**
+ * play button it reacts to user click
+ */
 
 class Playbutton extends React.Component {
     constructor(props) {
       super(props);
       this.state = {isToggleOn: true};
   
-      // This binding is necessary to make `this` work in the callback
+      /** This binding is necessary to make `this` work in the callback */
       this.handleClick = this.handleClick.bind(this);
     }
+    
+    /**
+     * toggle the boolean "isToggleOn"
+     */
   
     handleClick() {
       this.setState(prevState => ({
@@ -18,6 +25,9 @@ class Playbutton extends React.Component {
     }
   
     render() {
+        /**
+         * converting the button depending on isToggleOn value 
+         */
         if(this.state.isToggleOn === true){
             return (
                 <div onClick={this.handleClick}>
