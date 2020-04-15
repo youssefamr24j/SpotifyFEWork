@@ -2,8 +2,11 @@
   align-content: center;
 }
 
+
+
 .PagesLayout {
   display: grid;
+  height: 100vh;
 }
 
 .FullPage{

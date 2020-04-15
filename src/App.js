@@ -7,7 +7,6 @@ import PageContent from "./PageContent";
 import Songbar from "./Components/Songbar";
 import Prem from "./Prem";
 import HomeContent from "./Components/HomeContent";
-//
 import EditProfile from "./Components/EditProfile";
 import AcountSideBar from "./Components/AcountSideBar";
 import Accountoverview from "./Components/Accountoverview";
@@ -34,7 +33,7 @@ function App() {
   );
 
   return (
-    <div>
+    <div >
       <Router>
         <div style={{ width: "100%", minHeight: premiumContentHeight }}>
           <Route
@@ -43,8 +42,7 @@ function App() {
             component={() => <PremiumCreddd />}
           />
         </div>
-
-        <div className="PagesLayout">
+        <div className="PagesLayout ">
           {showPageContent ? (
             <div className="ContentLayout blue">
               <PageContent
@@ -78,6 +76,7 @@ function App() {
 
             <Route exact path="/Premium" component={() => <Prem />} />
           </div>
+          
           <div className="NavLayout">
             <Router>
               <Navbar />
@@ -96,6 +95,9 @@ function App() {
               <Route path="/collection/tracks" />
             </Router>
           </div>
+          <div className="Songbarlayout">
+            <Songbar text={"Songbar"}/>
+          </div>
         </div>
 
         <div className="PagesLayout">
@@ -105,7 +107,6 @@ function App() {
             <Route path="/AccountoverView" component={AcountSideBar} />
             <Route path="/account" component={AcountSideBar} />
             <Route path="/Recover" component={AcountSideBar} />
-
             <Route exact path="/EditProfile" component={Navbar} />
             <Route path="/AccountoverView" component={Navbar} />
             <Route path="/account" component={Navbar} />
@@ -119,11 +120,10 @@ function App() {
               <Route path="/account" />
             </Router>
           </div>
+          
         </div>
 
-        <div className="Songbarlayout">
-          <Songbar text={"Songbar"} />
-        </div>
+        
       </Router>
     </div>
   );
