@@ -41,7 +41,8 @@ h3 {
   color: black;
 }
 
-.btn2 {
+
+.btnFacebook{
   width: 350px;
   height: 50px;
   padding-top: 5px;
@@ -50,7 +51,6 @@ h3 {
   line-height: 1;
   border-radius: 500px;
   font-family: circular-spotify-ui, Helvetica Neue, Helvetica, Arial, sans-serif;
-  background-color: #3b5998;
   text-transform: uppercase;
   white-space: normal;
   text-align: center;
@@ -58,11 +58,11 @@ h3 {
   justify-content: center;
   margin: auto;
   border-radius: 30px;
-  color: white;
   border: 2px solid transparent;
-  
+  background-color: #3b5998;
+  color: white;
 }
-.btn2:hover {
+.btnFacebook:hover {
   background-color: transparent;
   background-color: #506ba5;
   color: white;
@@ -145,7 +145,7 @@ h4 {
 }
 
 @media only screen and (max-width : 399px) {
-  .btn,.btn2, .btn3{
+  .btnFacebook,.btn, .btn3{
     width: 100%
   }
 }
