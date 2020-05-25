@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import FacebookLogin from 'react-facebook-login';
+import { Card, Image } from 'react-bootstrap';
 import "./login.css";
 import "./page.js";
 
@@ -14,6 +16,13 @@ class Loginform extends Component {
       loggedIn: false,
       loggingError: "",
       user:false,  //array of users
+      login:false,
+      setLogin:false,
+      data:{},
+      setData:{},
+     picture:'',
+     setPicture:''
+
       
        
     };
@@ -74,6 +83,24 @@ this.setState({user:resp})
     }
   }
 
+//////////////////////////////////
+   responseFacebook = (response) => {
+    console.log(response);
+    this.setState({setData:response});
+      if (response.accessToken) {
+      this.setState({setPicture:response.picture.data.url});
+      this.setState({loggedIn:true});
+      console.log(this.state.data);
+      var h =response.accesstoken;
+      localStorage.setItem('tokenfromlogin',h)
+    } else {
+      this.setState({loggedIn:false});
+    }
+  }
+
+/////////////////////////////////
+
+
   //function documentation
 /*
 * Handles login submission
@@ -87,57 +114,79 @@ onSubmit = e => {
 
     if (this.isValid()) {
       //-------------------------------------------------------
-        let url=process.env.URL + "/users/login";
-     let data=(this.state.user)
-     fetch(url,{
-      method:'POST',
-      headers:{
-        'Accept':'application/json',
-        'Content-TYpe':'application/json',
-      },
-      body:JSON.stringify(data)
-    }).then((resultss)=> {
-     resultss.json().then((resp) =>{
-    console.warn(resp)
-    var h =resp.token;
-   
-    localStorage.setItem('tokenfromlogin',h)
-    this.setState({
-      loggedIn: true
-    });
-        
-     })
-    })
-  
+      let url=process.env.REACT_APP_URL + "/users/login";
+     
+      let data ={
+        'email':  this.state.identifier,
+        'password': this.state.password,
       }
-      if(this.state.loggedIn===false && this.isValid() ) {
-       { 
-         this.setState({loggingError:"Incorrect user or password"})
-         }
+
+      console.log(data)
+   fetch(url,{
+    method:'POST',
+    headers:{
+      'Accept':'application/json',
+      'Content-TYpe':'application/json',
+    },
+    body:JSON.stringify(data)
+  }) .then((response)=> {
+    response.json().then((body) =>{
+
+    console.log(body)
+    console.log(response.status)
+
+    if(response.status == 400) {
+      this.setState({loggingError:"Incorrect user or password",loggedIn:false});
     }
-  
-  };
+    else {
+      this.setState({loggedIn: true});
+      var h =body.token;
+      localStorage.setItem('tokenfromlogin',h)
+    }
+  })
+})
+}
+};
   render() {
-    const { identifier, password, isLoading,loaded } = this.state;
+    const { identifier, password, isLoading,loaded,data } = this.state;
     
     if (this.state.loggedIn) {
       return (window.location.href = "/Home");
+      console.log(this.state.data);
     }
 
     return (
       <form id="loginForm">
         <h3> To continue,log in to Spotify </h3>
         <div className="error">{this.state.loggingError}</div> <br />
-        <button
-          className="btn2"
-          
-            //alert("try later");
-            onClick={this.onSubmit}
-          
-          disabled={isLoading}
-        >
-          CONTINUE WITH FACEBOOK
-        </button>
+        
+        
+          { !(this.state.login) && 
+            <FacebookLogin 
+              appId="265333214672078"
+              autoLoad={true}
+              fields="name,email,picture"
+              scope="public_profile,user_friends"
+              callback={this.responseFacebook}
+              icon="fa-facebook"
+              cssClass="btnFacebook" 
+              textButton = "&nbsp;&nbsp;Log In with Facebook"
+              />
+          }
+        
+          { (this.state.login) &&
+            <Image src={this.state.picture} roundedCircle />
+          }
+        
+        { (this.state.login) &&
+          <Card.Body>
+            <Card.Title>{this.state.data.name}</Card.Title>
+            <Card.Text>
+              {this.state.data.email}
+            </Card.Text>
+          </Card.Body>
+        }
+
         <h3>OR</h3>
         <input  
           id="email"       
